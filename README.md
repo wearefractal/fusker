@@ -27,6 +27,7 @@ To execute an XSS attack on the test server, just click [HERE](http://localhost:
 	nyan - Redirects attacker to nyan.cat
 	goatse - Redirects attacker to goatse.bz (WARNING: Harmful to eyes)
 	bush - Redirects attacker to George W. Bush "you just fell for the trap"
+	lemonparty - Redirects attacker to lemonparty.org
 
 ## Adding detectives
 
