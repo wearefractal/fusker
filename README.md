@@ -1,3 +1,5 @@
+**node-fusker is less than a day old and only had a few hours of work put into it. Please give it time to mature before you pass any judgement
+
 **node-fusker is a library to prevent and manage a multitude of attacks in nodejs**
 
 To install node-fusker, use [npm](http://github.com/isaacs/npm):
