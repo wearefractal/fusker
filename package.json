@@ -1,0 +1,45 @@
+{
+   "name":"fusker",
+   "description":"Utilities to mess with hackers",
+   "version":"0.0.2",
+   "homepage":"http://github.com/wearefractal/fusker",
+   "keywords":[
+      "fusker",
+      "hack",
+      "protection",
+      "lulz",
+      "hacker"
+   ],
+   "author":"Contra <contra@australia.edu>",
+   "main":"./lib/fusker.js",
+   "directories":{
+      "lib":"./lib"
+   },
+   "bugs":{
+      "mail":"issues@wearefractal.com",
+      "web":"http://github.com/wearefractal/fusker/issues"
+   },
+   "repository":{
+      "type":"git",
+      "url":"http://github.com/wearefractal/fusker.git"
+   },
+   "contributors":[
+      {
+         "name":"amurray",
+         "github":"https://github.com/amurray"
+      },
+      {
+         "name":"tprime",
+         "github":"https://github.com/tprime"
+      }
+   ],
+   "engines":{
+      "node":">=0.2.2"
+   },
+   "licenses":[
+      {
+         "type":"MIT",
+         "url":"http://github.com/wearefractal/fusker/raw/master/LICENSE"
+      }
+   ]
+}
