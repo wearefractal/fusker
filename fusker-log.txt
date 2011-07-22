@@ -69,3 +69,74 @@
      _events: { finish: [Function] } } }
 [ - END ATTACK DETAILS - ]
 
+[ - ATTACK DETAILS FOR function now() { [native code] } - ]
+ --> Detective: XSS
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x
+ --> IP: 127.0.0.1
+ --> Raw Request: { bufferSize: 0,
+  fd: 7,
+  type: 'tcp4',
+  allowHalfOpen: true,
+  _readWatcher: 
+   { socket: [Circular],
+     callback: [Function: onReadable] },
+  destroyed: false,
+  readable: true,
+  _writeQueue: [],
+  _writeQueueEncoding: [],
+  _writeQueueFD: [],
+  _writeQueueCallbacks: [],
+  _writeWatcher: 
+   { socket: [Circular],
+     callback: [Function: onWritable] },
+  writable: true,
+  _writeImpl: [Function],
+  _readImpl: [Function],
+  _shutdownImpl: [Function],
+  remoteAddress: '127.0.0.1',
+  remotePort: 34227,
+  server: 
+   { connections: 1,
+     allowHalfOpen: true,
+     watcher: { host: [Circular], callback: [Function] },
+     _events: 
+      { request: [Function],
+        connection: [Function: connectionListener] },
+     httpAllowHalfOpen: false,
+     type: 'tcp4',
+     fd: 5 },
+  ondrain: [Function],
+  _idleTimeout: 120000,
+  _idleNext: 
+   { repeat: 120,
+     _idleNext: [Circular],
+     _idlePrev: [Circular],
+     callback: [Function] },
+  _idlePrev: 
+   { repeat: 120,
+     _idleNext: [Circular],
+     _idlePrev: [Circular],
+     callback: [Function] },
+  _idleStart: Fri, 22 Jul 2011 09:53:18 GMT,
+  _events: 
+   { timeout: [Function],
+     error: [Function],
+     close: [Function] },
+  ondata: [Function],
+  onend: [Function],
+  _httpMessage: 
+   { output: [],
+     outputEncodings: [],
+     writable: true,
+     _last: false,
+     chunkedEncoding: false,
+     shouldKeepAlive: true,
+     useChunkedEncodingByDefault: true,
+     _hasBody: true,
+     _trailer: '',
+     finished: false,
+     socket: [Circular],
+     connection: [Circular],
+     _events: { finish: [Function] } } }
+[ - END ATTACK DETAILS - ]
+
