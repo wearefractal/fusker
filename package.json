@@ -1,16 +1,21 @@
 {
    "name":"fusker",
-   "description":"Utilities to mess with hackers",
-   "version":"0.0.2",
+   "description":"Module to detect and manage attacks in nodejs",
+   "version":"0.0.4",
    "homepage":"http://github.com/wearefractal/fusker",
    "keywords":[
       "fusker",
       "hack",
-      "protection",
-      "lulz",
-      "hacker"
+      "protect",
+      "csrf",
+      "lfi",
+      "xss",
+      "sqli",
+      "injection",
+      "attack",
+      "blacklist"
    ],
-   "author":"Contra <contra@australia.edu>",
+   "author":"Fractal <contact@wearefractal.com>",
    "main":"./lib/fusker.js",
    "directories":{
       "lib":"./lib"
@@ -24,6 +29,10 @@
       "url":"http://github.com/wearefractal/fusker.git"
    },
    "contributors":[
+      {
+         "name":"Contra",
+         "github":"https://github.com/Contra"
+      },
       {
          "name":"amurray",
          "github":"https://github.com/amurray"

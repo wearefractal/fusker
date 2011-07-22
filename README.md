@@ -6,39 +6,50 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 
 ## Example
 
-Please see [test.js](http://github.com/Contra/fusker/blob/master/test.js) for a working example and documentation
+Please see [test.js](http://github.com/wearefractal/fusker/blob/master/test.js) for a working example and documentation
 
-## Levels of lulz (attacking the attackers)
+## List of included detection modules (detectives)
 
-	None - Blacklists IP
-	Low - Blacklists IP, Redirects to Google
-	Fair - Blacklists IP, Redirects to Saxroll
-	High - Blacklists IP, Redirects to browser attack page (high chance of crashing the attacker)
-	Extreme - Blacklists IP, Opens infinite tabs of attack pages (will absolutely crash the attacker)
-
-## List of included detection modules
-
-	404 - Detects 404 as a form of attack. Only use this if you have a single page application and want to punish people who like to snoop around
+	csrf - Detects cross-site request forgery in incoming http requests
 	xss - Detects common XSS attacks in incoming http requests
-	sqli - Detects SQLi attempts in incoming http requests. Only an idiot would try to SQLi a node server (lol)
+	sqli - Detects SQLi attempts in incoming http requests
 	lfi - Detects common LFI attacks in incoming http requests
+	404 - Punishes people who like to snoop around. Only use with single page applications
+	
+## List of included payload modules
 
-## Extending the library
+	blacklist - Blacklists IP for specified amount of time (banLength in config)
+	saxroll - Redirects attacker to 1227.com
+	nimp - Redirects attacker to fusker.on.nimp.org (WARNING: Harmful to attacker)
+	nyan - Redirects attacker to nyan.cat
+	goatse - Redirects attacker to goatse.bz (WARNING: Harmful to eyes)
+	bush - Redirects attacker to George W. Bush "you just fell for the trap"
 
-Add a .js or .coffee file to the 'mods' directory of the module.
+## Adding detectives
+
+Add a .js or .coffee file to the 'detectives' directory of the module.
 
 Example:
-	Adding msi.js to /mods/ will allow you to fusker.detect.push('msi');
+	Adding msi.js to /lib/detectives/ will allow you to fusker.detectives.push('msi');
+	
+## Adding payloads
+
+Add a .js or .coffee file to the 'payloads' directory of the module.
+
+Example:
+	Adding wigi-bomb.js to /lib/payloads/ will allow you to fusker.payloads.push('wigi-bomb');
 
 ## Contributors
 
-- [tprime](https://github.com/tprime) - General
+- [Contra](https://github.com/Contra) - Everything
+- [amurray](https://github.com/amurray) - Tips
+- [tprime](https://github.com/tprime) - Ideas
 
 ## LICENSE
 
 (MIT License)
 
-Copyright (c) 2011 Contra <contra@australia.edu>
+Copyright (c) 2011 Fractal <contact@wearefractal.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
