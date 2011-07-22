@@ -7,7 +7,7 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 ## Example
 
 Please see [test.js](http://github.com/wearefractal/fusker/blob/master/test.js) for a working example and documentation.
-To execute an XSS on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
+To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
 ## List of included detection modules (detectives)
 
