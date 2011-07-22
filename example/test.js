@@ -4,7 +4,7 @@ require('./lib/fusker');
 //General configuration
 fusker.config.dir = process.cwd(); //Sets the web directory to lock to. Default: process.cwd (Working directory)
 fusker.config.banLength = 1; //Length (in minutes) to blacklist attacker IP. Default: 1440 (24 hours)
-
+fusker.config.verbose = true; //Verbose logging. Default: false
 
 //Configure detections, loaded from detectives folder. 
 //Tests will be executed in order, always put 404 last if you choose to use it

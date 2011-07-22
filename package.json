@@ -1,7 +1,7 @@
 {
    "name":"fusker",
-   "description":"Module to detect and manage attacks in nodejs",
-   "version":"0.0.4",
+   "description":"Detect, prevent, and fight back against hackers in the lulziest ways possible",
+   "version":"0.0.5",
    "homepage":"http://github.com/wearefractal/fusker",
    "keywords":[
       "fusker",
