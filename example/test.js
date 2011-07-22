@@ -1,5 +1,5 @@
 //Including this creates global.fusker so no need to assign anything here
-require('./lib/fusker');
+require('../lib/fusker');
 
 //General configuration
 fusker.config.dir = process.cwd(); //Sets the web directory to lock to. Default: process.cwd (Working directory)
