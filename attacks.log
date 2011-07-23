@@ -1,0 +1,54 @@
+[- ATTACK DETAILS FOR Fri Jul 22 2011 17:41:24 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 19:30:51 GMT-0700 (MST) -]
+ --> Detective: SQLi-0
+ --> Request: GET /?id=1'%20OR%20'1'='1
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:07:56 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:18:29 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:22:13 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:36:24 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:36:29 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:43:48 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+
+[- ATTACK DETAILS FOR Fri Jul 22 2011 20:45:41 GMT-0700 (MST) -]
+ --> Detective: XSS-2
+ --> Request: GET /index.html?wat=1%22%3E%3Cimg%20src=x%20onerror=alert%28%22XSS%22%29%3E%3Cnoscript%3E
+ --> IP: 127.0.0.1
+[- END ATTACK DETAILS -]
+

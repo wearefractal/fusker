@@ -8,7 +8,7 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 
 ## Example
 
-Please see [test.js](http://github.com/wearefractal/fusker/blob/master/example/test.js) for a working example and documentation.
+Please see [test.js](http://github.com/wearefractal/fusker/blob/master/test.js) for a working example and documentation.
 To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
 ## List of included detection modules (detectives)
@@ -22,12 +22,17 @@ To execute an XSS attack on the test server, just click [HERE](http://localhost:
 ## List of included payload modules
 
 	blacklist - Blacklists IP for specified amount of time (banLength in config)
+	fake-report - Alerts attacker that they have been reported to ic3 and displays DOJ logo
 	saxroll - Redirects attacker to 1227.com
 	nimp - Redirects attacker to fusker.on.nimp.org (WARNING: Harmful to attacker)
 	nyan - Redirects attacker to nyan.cat
 	goatse - Redirects attacker to goatse.bz (WARNING: Harmful to eyes)
-	bush - Redirects attacker to George W. Bush "you just fell for the trap"
-	lemonparty - Redirects attacker to lemonparty.org
+	bush - Redirects attacker to full screen George W. Bush "you just fell for the trap"
+	lemonparty - Redirects attacker to lemonparty.org (WARNING: Harmful to eyes)
+	meatspin - Redirects attacker to meatspin.com (WARNING: Harmful to eyes)
+	explosive-impact - Redirects attacker to fullscreen video of ranting
+	raggedyann - Redirects attacker to extreme speaker rape. (WARNING: Harmful to speakers)
+	crews - Displays Terry Crews nipple dance rainbow b& page
 
 ## Adding detectives
 
