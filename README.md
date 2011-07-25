@@ -9,56 +9,54 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 Please see [test.js](http://github.com/wearefractal/fusker/blob/master/example/test.js) for a working example and documentation.
 To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
-## Using the fusker HTTP wrapper
-	## List of included HTTP detection modules (detectives)
-	
-		csrf - Detects cross-site request forgery in incoming http requests
-		xss - Detects common XSS attacks in incoming http requests
-		sqli - Detects SQLi attempts in incoming http requests
-		lfi - Detects common LFI attacks in incoming http requests
-		404 - Punishes people who like to snoop around. Only use with single page applications
-		
-	## List of included HTTP payload modules
-	
-		blacklist - Blacklists IP from HTTP server for specified amount of time (banLength in config)
-		fake-report - Alerts attacker that they have been reported to ic3 and displays DOJ logo
-		saxroll - Redirects attacker to 1227.com
-		nimp - Redirects attacker to fusker.on.nimp.org (WARNING: Harmful to attacker)
-		nyan - Redirects attacker to nyan.cat
-		goatse - Redirects attacker to goatse.bz (WARNING: Harmful to eyes)
-		bush - Redirects attacker to full screen George W. Bush "you just fell for the trap"
-		lemonparty - Redirects attacker to lemonparty.org (WARNING: Harmful to eyes)
-		meatspin - Redirects attacker to meatspin.com (WARNING: Harmful to eyes)
-		explosive-impact - Redirects attacker to fullscreen video of ranting
-		raggedyann - Redirects attacker to extreme speaker rape. (WARNING: Harmful to speakers)
-		crews - Displays Terry Crews nipple dance rainbow b& page
-	
-	## Adding HTTP detectives
-	
-	Add a .js or .coffee file to the 'http-detectives' directory of the module.
-		
-	## Adding HTTP payloads
-	
-	Add a .js or .coffee file to the 'http-payloads' directory of the module.
+## List of included HTTP detection modules (detectives)
 
-## Using the fusker SocketIO wrapper
-	## List of included SocketIO detection modules (detectives)
+	csrf - Detects cross-site request forgery in incoming http requests
+	xss - Detects common XSS attacks in incoming http requests
+	sqli - Detects SQLi attempts in incoming http requests
+	lfi - Detects common LFI attacks in incoming http requests
+	404 - Punishes people who like to snoop around. Only use with single page applications
 	
-		xss - Detects common XSS attacks in incoming socket messages
-		sqli - Detects SQLi attempts in incoming socket messages
-		lfi - Detects common LFI attacks in incoming socket messages
-		
-	## List of included SocketIO payload modules
+## List of included HTTP payload modules
+
+	blacklist - Blacklists IP from HTTP server for specified amount of time (banLength in config)
+	fake-report - Alerts attacker that they have been reported to ic3 and displays DOJ logo
+	saxroll - Redirects attacker to 1227.com
+	nimp - Redirects attacker to fusker.on.nimp.org (WARNING: Harmful to attacker)
+	nyan - Redirects attacker to nyan.cat
+	goatse - Redirects attacker to goatse.bz (WARNING: Harmful to eyes)
+	bush - Redirects attacker to full screen George W. Bush "you just fell for the trap"
+	lemonparty - Redirects attacker to lemonparty.org (WARNING: Harmful to eyes)
+	meatspin - Redirects attacker to meatspin.com (WARNING: Harmful to eyes)
+	explosive-impact - Redirects attacker to fullscreen video of ranting
+	raggedyann - Redirects attacker to extreme speaker rape. (WARNING: Harmful to speakers)
+	crews - Displays Terry Crews nipple dance rainbow b& page
+
+## Adding HTTP detectives
+
+Add a .js or .coffee file to the 'http-detectives' directory of the module.
 	
-		blacklist - Blacklists IP from SocketIO server for specified amount of time (banLength in config)
+## Adding HTTP payloads
+
+Add a .js or .coffee file to the 'http-payloads' directory of the module.
+
+## List of included SocketIO detection modules (detectives)
+
+	xss - Detects common XSS attacks in incoming socket messages
+	sqli - Detects SQLi attempts in incoming socket messages
+	lfi - Detects common LFI attacks in incoming socket messages
 	
-	## Adding SocketIO detectives
+## List of included SocketIO payload modules
+
+	blacklist - Blacklists IP from SocketIO server for specified amount of time (banLength in config)
+
+## Adding SocketIO detectives
+
+Add a .js or .coffee file to the 'socket-detectives' directory of the module.
 	
-	Add a .js or .coffee file to the 'socket-detectives' directory of the module.
-		
-	## Adding SocketIO payloads
-	
-	Add a .js or .coffee file to the 'socket-payloads' directory of the module.
+## Adding SocketIO payloads
+
+Add a .js or .coffee file to the 'socket-payloads' directory of the module.
 	
 ## Contributors
 
