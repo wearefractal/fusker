@@ -19,17 +19,27 @@ var io = fusker.socket.listen(server);
 
 io.sockets.on('connection', function (socket){
 
-	socket.emit('HelloClient', 'o hay thar client')
+	socket.emit('HelloClient', 'o hay thar client');
+	
+	//This is to test the wrapping system
 	socket.on('TestObject', function (msg) {
-		//console.log('HelloServer! Contents: ' + msg);
+		console.log('HelloServer1! Contents: ' + msg);
 	});
+	socket.on('TestObject', function (msg) {
+		console.log('HelloServer2! Contents: ' + msg);
+	});
+	socket.on('TestObject', function (msg) {
+		console.log('HelloServer3! Contents: ' + msg);
+	});
+	
+	//This is to test attack detection. Uncomment the code in index.html to send these on load
 	socket.on('TestSQL', function (msg){
-		//console.log('Handled! Contents: ' + msg);
+		console.log('Handled! Contents: ' + msg);
 	});
 	socket.on('TestLFI', function (msg){
-		//console.log('Handled! Contents: ' + msg);
+		console.log('Handled! Contents: ' + msg);
 	});
 	socket.on('TestXSS', function (msg){
-		//console.log('Handled! Contents: ' + msg);
+		console.log('Handled! Contents: ' + msg);
 	});
 });
