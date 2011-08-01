@@ -5,7 +5,7 @@
 	"homepage": "http://github.com/wearefractal/fusker",
 	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist"],
 	"author": "Contra <contra@australia.edu> (http://wearefractal.com)",
-	"main": "./lib/fusker.js",
+	"main": "./lib/fusker.coffee",
 	"directories": {
 		"lib": "./lib"
 	},
