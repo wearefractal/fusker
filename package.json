@@ -1,9 +1,9 @@
 {
 	"name": "fusker",
 	"description": "Detect, prevent, and fight back against hackers in the lulziest ways possible",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"homepage": "http://github.com/wearefractal/fusker",
-	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist"],
+	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist", "express", "socket", "security"],
 	"author": "Contra <contra@australia.edu> (http://wearefractal.com)",
 	"main": "./lib/fusker.coffee",
 	"directories": {

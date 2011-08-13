@@ -6,7 +6,7 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 
 ## Example
 
-Please see [test.js](http://github.com/wearefractal/fusker/blob/master/example/test.js) for a working example and documentation.
+Please see [the example folder](http://github.com/wearefractal/fusker/blob/master/example/) for working examples and documentation.
 To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
 ## List of included HTTP detection modules (detectives)
@@ -57,10 +57,16 @@ Add a .js or .coffee file to the 'socket-detectives' directory of the module.
 ## Adding SocketIO payloads
 
 Add a .js or .coffee file to the 'socket-payloads' directory of the module.
+
+## Express Middleware
+Please see [this example](http://github.com/wearefractal/fusker/blob/master/example/express-test.coffee) for a working express example.
+It's as easy as
+	app.use(fusker.express.check);
+Detectives/payloads are the same as they would be for the fusker HTTP server. Make sure fusker is the first piece of middleware added.
 	
 ## Contributors
 
-- [Contra](https://github.com/Contra) - Everything
+- [Contra](https://github.com/Contra)
 
 ## LICENSE
 
