@@ -9,6 +9,10 @@ To install node-fusker, use [npm](http://github.com/isaacs/npm):
 Please see [the example folder](http://github.com/wearefractal/fusker/blob/master/example/) for working examples and documentation.
 To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
+## Test Site
+
+You think you're one raw dog? [fusker.nodester.com](http://fusker.nodester.com/) Come at me bro.
+
 ## List of included HTTP detection modules (detectives)
 
 	csrf - Detects cross-site request forgery in incoming http requests
