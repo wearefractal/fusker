@@ -5,7 +5,7 @@ fs = require 'fs'
 path = require 'path'
 util = require './util'
 config = require './config'
-
+	  
 http = {}
 http.detectives = new Array()
 http.payloads = new Array()
