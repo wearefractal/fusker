@@ -1,12 +1,12 @@
-**node-fusker is a library to prevent and manage a multitude of attacks in nodejs**
+**fusker is a library to prevent and manage a multitude of attacks in nodejs**
 
-To install node-fusker, use [npm](http://github.com/isaacs/npm):
+To install fusker, use [npm](http://github.com/isaacs/npm):
 
     $ npm install fusker
 
 ## Example
 
-Please see [the example folder](http://github.com/wearefractal/fusker/blob/master/example/) for working examples and documentation.
+Please see [the examples folder](http://github.com/wearefractal/fusker/blob/master/examples/) for working examples and documentation.
 To execute an XSS attack on the test server, just click [HERE](http://localhost:8080/index.html?wat=1%22%3E%3Cimg%20src=x) while it's running.
 
 ## Test Site
@@ -63,10 +63,15 @@ Add a .js or .coffee file to the 'socket-detectives' directory of the module.
 Add a .js or .coffee file to the 'socket-payloads' directory of the module.
 
 ## Express Middleware
-Please see [this example](http://github.com/wearefractal/fusker/blob/master/example/express-test.coffee) for a working express example.
+Please see [this](http://github.com/wearefractal/fusker/blob/master/examples/express-test.coffee) for a working express example.
 It's as easy as
 	app.use(fusker.express.check);
 Detectives/payloads are the same as they would be for the fusker HTTP server. Make sure fusker is the first piece of middleware added.
+
+## PROTIPS
+
+Setting config.silent to true will turn off all logging
+Setting config.verbose to true will turn on a ton of logging
 	
 ## Contributors
 

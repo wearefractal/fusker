@@ -5,16 +5,17 @@ fs = require 'fs'
 path = require 'path'
 util = require './util'
 config = require './config'
+log = require './logger'
 	  
 http = {}
-http.detectives = new Array()
-http.payloads = new Array()
-http.blacklist = new Array()
+http.detectives = []
+http.payloads = []
+http.blacklist = []
 
 http.createServer = (port) ->
-	console.log '[FUSKER] Creating HTTP server on port ' + port
-	console.log '[FUSKER] Detectives: ' + http.detectives
-	console.log '[FUSKER] Payloads: ' + http.payloads
+	log.info '[FUSKER] Creating HTTP server on port ' + port
+	log.info '[FUSKER] Detectives: ' + http.detectives
+	log.info '[FUSKER] Payloads: ' + http.payloads
 
 	serv = https.createServer (req, res) ->
     unless req
@@ -37,18 +38,17 @@ http.createServer = (port) ->
 /* This is split out so it can be used in other places (such as the express middleware) */
 http.processRequest = (req, res) ->
 		userIP = req.connection.remoteAddress
-		if config.verbose
-			console.log '[FUSKER] HTTP: ' + userIP + ' -> ' + req.url
+		log.debug '[FUSKER] HTTP: ' + userIP + ' -> ' + req.url
     
 		for entry in http.blacklist
 			if entry.ip is userIP
 				served = util.getSince entry.date
 				if served >= config.banLength
-					console.log '[FUSKER] Lifting HTTP ban on ' + userIP
-					http.blacklist.splice http.blacklist.indexOf(entry), 1
+					log.debug '[FUSKER] Lifting HTTP ban on ' + userIP
+					http.blacklist.remove entry
 					break
 				else
-					console.log '[FUSKER] ' + userIP + ' blocked via HTTP. Remaining: ' + Math.round(config.banLength - served) + ' min'
+					log.debug '[FUSKER] ' + userIP + ' blocked via HTTP. Remaining: ' + Math.round(config.banLength - served) + ' min'
 					res.end()
 					return
 
@@ -66,7 +66,7 @@ http.logAttack = (file, module, req) ->
 	log.end()
 
 http.handleAttack = (module, req, res) ->
-	console.log '[FUSKER] HTTP attack detected! Module: ' + module + ' IP: ' + req.connection.remoteAddress
+	log.info '[FUSKER] HTTP attack detected! Module: ' + module + ' IP: ' + req.connection.remoteAddress
 	http.logAttack config.httplog, module, req
 
 	for payload in http.payloads

@@ -4,37 +4,37 @@ fs = require 'fs'
 path = require 'path'
 util = require './util'
 config = require './config'
+log = require './logger'
 
 socketio = {}
-socketio.detectives = new Array()
-socketio.payloads = new Array()
-socketio.blacklist = new Array()
+socketio.detectives = []
+socketio.payloads = []
+socketio.blacklist = []
 
 socketio.listen = (server) ->
-	console.log '[FUSKER] Creating Socket.IO server'
+	log.info '[FUSKER] Creating Socket.IO server'
 	sio = require 'socket.io'
 	io = sio.listen server
 
 	io.sockets.on 'connection', (socket) ->
-		socket.remoteAddress = socket.handshake.address.address
+		socket.remoteAddress ?= socket.handshake.address.address
 
 		for entry in socketio.blacklist
 			if entry.ip is socket.remoteAddress
 				served = util.getSince entry.date
 				if served >= config.banLength
-					console.log '[FUSKER] Lifting SocketIO ban on ' + socket.remoteAddress
-					socketio.blacklist.splice socketio.blacklist.indexOf(entry), 1
+					log.debug '[FUSKER] Lifting SocketIO ban on ' + socket.remoteAddress
+					socketio.blacklist.remove entry
 					break
 				else
-					console.log '[FUSKER] ' + socket.remoteAddress + ' blocked via SocketIO. Remaining: ' + Math.round(config.banLength - served) + ' min'
+					log.debug '[FUSKER] ' + socket.remoteAddress + ' blocked via SocketIO. Remaining: ' + Math.round(config.banLength - served) + ' min'
 					socket.disconnect()
 					return
 
 		socket.on 'newListener', (evt, listener) ->
 			socket.listeners(evt).push (msg) ->
 
-				if config.verbose
-					console.log '[FUSKER] SocketIO: ' + socket.remoteAddress + ' -> ' + evt
+				log.debug '[FUSKER] SocketIO: ' + socket.remoteAddress + ' -> ' + evt
 
 				for detective in socketio.detectives
 					module = require './socket-detectives/' + detective
@@ -51,7 +51,7 @@ socketio.logAttack = (file, module, socket, msg) ->
 	log.end()
 
 socketio.handleAttack = (module, socket, msg) ->
-	console.log '[FUSKER] Socket attack detected! Module: ' + module + ' IP: ' + socket.remoteAddress
+	log.info '[FUSKER] Socket attack detected! Module: ' + module + ' IP: ' + socket.remoteAddress
 	socketio.logAttack config.socketlog, module, socket, msg
 
 	for payload in socketio.payloads

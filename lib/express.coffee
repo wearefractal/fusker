@@ -1,8 +1,5 @@
-express = {}
-
-express.check = (req, res, next) ->
-  http = require('./fusker').http
+module.exports.check = (req, res, next) ->
+  http = require './http'
   http.processRequest req, res
-  if next
+  if next?
     next()
-module.exports = express

@@ -1,3 +1,5 @@
+require 'protege'
+
 /* Create global var */
 fusker = {}
 
@@ -8,5 +10,6 @@ fusker.http = require './http'
 fusker.express = require './express'
 fusker.socket = require './socketio'
 fusker.patterns = require './patterns'
-module.exports = fusker
 
+
+module.exports = fusker
