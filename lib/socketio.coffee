@@ -39,6 +39,10 @@ socketio.listen = (server) ->
 				for detective in socketio.detectives
 					module = require './socket-detectives/' + detective
 					module.check socket, sys.inspect(msg)
+  io.enable "browser client minification"
+  io.enable "browser client etag"
+  io.set "log level", 1
+  io.set "transports", [ "websocket", "flashsocket", "htmlfile", "xhr-polling", "jsonp-polling" ]
 	return io
 
 socketio.logAttack = (file, module, socket, msg) ->
