@@ -4,10 +4,10 @@ fusker.config.dir = process.cwd()
 fusker.config.banLength = 1
 fusker.config.verbose = true
 
-fusker.http.detectives.push 'csrf', 'xss', 'sqli', 'lfi', '404'
-fusker.http.payloads.push 'blacklist', 'bush'
-fusker.socket.detectives.push 'xss', 'sqli', 'lfi'
-fusker.socket.payloads.push 'blacklist'
+fusker.http.detect 'csrf', 'xss', 'sqli', 'lfi', '404'
+fusker.http.punish 'blacklist', 'bush'
+fusker.socket.detect 'xss', 'sqli', 'lfi'
+fusker.socket.punish 'blacklist'
 
 server = fusker.http.createServer 8080
 io = fusker.socket.listen server

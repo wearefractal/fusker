@@ -6,12 +6,25 @@ path = require 'path'
 util = require './util'
 config = require './config'
 log = require './logger'
+mime = require 'mime'
 	  
 http = {}
 http.detectives = []
 http.payloads = []
 http.blacklist = []
 
+http.detect = (args...) -> 
+  if Object.isArray(args)
+    http.detectives.merge args
+  else
+    http.detectives = x for x in args
+    
+http.punish = (args...) -> 
+  if Object.isArray(args)
+    http.payloads.merge args
+  else
+    http.payloads = x for x in args
+  
 http.createServer = (port) ->
 	log.info '[FUSKER] Creating HTTP server on port ' + port
 	log.info '[FUSKER] Detectives: ' + http.detectives
@@ -22,15 +35,29 @@ http.createServer = (port) ->
       return
     http.processRequest req, res
       
-    file = url.parse(req.url).pathname
-    if file is '/'
-	    file = '/index.html'
-	
-    fs.readFile config.dir + file, (err, data) ->
-	    unless err
-		    res.writeHead 200
-		    res.write data, 'utf8'
-		    res.end()
+    uri = url.parse(req.url).pathname
+    filename = path.join(config.dir, uri)
+    
+    path.exists filename, (exists) ->
+      unless exists
+        res.writeHead 404, "Content-Type": "text/plain"
+        res.write "404 Not Found\n"
+        res.end()
+        return
+          
+      if fs.statSync(filename).isDirectory()    
+        filename += "/index.html"
+        
+      fs.readFile filename, "binary", (err, file) ->
+        if err
+          res.writeHead 500, "Content-Type": "text/plain"
+          res.write err + "\n"
+          res.end()
+          return
+            
+        res.writeHead 200, "Content-Type": mime.lookup(filename)
+        res.write file, "binary"
+        res.end()
 
 	serv.listen port
 	return serv

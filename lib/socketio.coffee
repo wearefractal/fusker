@@ -11,8 +11,22 @@ socketio.detectives = []
 socketio.payloads = []
 socketio.blacklist = []
 
+socketio.detect = (args...) -> 
+  if Object.isArray(args)
+    socketio.detectives.merge args
+  else
+    socketio.detectives = x for x in args
+    
+socketio.punish = (args...) -> 
+  if Object.isArray(args)
+    socketio.payloads.merge args
+  else
+    socketio.payloads = x for x in args
+
 socketio.listen = (server) ->
 	log.info '[FUSKER] Creating Socket.IO server'
+	log.info '[FUSKER] Detectives: ' + socketio.detectives
+	log.info '[FUSKER] Payloads: ' + socketio.payloads
 	sio = require 'socket.io'
 	io = sio.listen server
 
