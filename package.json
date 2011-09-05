@@ -21,7 +21,8 @@
 		"socket.io": ">= 0.7.4",
 		"coffee-script": "*",
 		"colors":"*",
-		"protege":"*"
+		"protege":"*",
+		"mime":"*"
 	},
 	"contributors": [{
 		"name": "Contra",
