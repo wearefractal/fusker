@@ -6,7 +6,7 @@ module.exports =
   log: (str) ->
     if !config.silent
       console.log str
-  
+
   debug: (str) ->
     if !config.silent and config.verbose
       console.log '[' + pack.name.magenta, '-', 'DEBUG'.upcase().green.inverse + ']', str	
@@ -21,4 +21,4 @@ module.exports =
 
   error: (str) ->
     if !config.silent
-      console.log '[' + pack.name.magenta, '-', 'debug'.upcase().red.inverse + ']', str
+      console.log '[' + pack.name.magenta, '-', 'error'.upcase().red.inverse + ']', str

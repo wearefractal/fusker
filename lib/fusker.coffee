@@ -11,5 +11,4 @@ fusker.express = require './express'
 fusker.socket = require './socketio'
 fusker.patterns = require './patterns'
 
-
 module.exports = fusker

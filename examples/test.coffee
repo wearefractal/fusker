@@ -1,6 +1,6 @@
 fusker = require '../lib/fusker'
 
-fusker.config.dir = process.cwd()
+fusker.config.dir = __dirname
 fusker.config.banLength = 1
 fusker.config.verbose = true
 
@@ -9,7 +9,7 @@ fusker.http.punish 'blacklist', 'bush'
 fusker.socket.detect 'xss', 'sqli', 'lfi'
 fusker.socket.punish 'blacklist'
 
-server = fusker.http.createServer 8080
+server = fusker.http.createServer 8080, 'admin', 'pass123'
 io = fusker.socket.listen server
 
 io.sockets.on 'connection', (socket) ->
