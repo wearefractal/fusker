@@ -1,7 +1,7 @@
 {
 	"name": "fusker",
 	"description": "Detect, prevent, and fight back against hackers in the lulziest ways possible",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"homepage": "http://github.com/wearefractal/fusker",
 	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist", "express", "socket", "security", "firewall"],
 	"author": "Contra <contra@australia.edu> (http://wearefractal.com)",
@@ -23,7 +23,7 @@
 		"colors":"*",
 		"protege":"*",
 		"mime":"*",
-		"http-digest":"*"
+		"digest":"*"
 	},
 	"contributors": [{
 		"name": "Contra",

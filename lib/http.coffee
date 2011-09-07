@@ -7,6 +7,7 @@ util = require './util'
 config = require './config'
 log = require './logger'
 mime = require 'mime'
+digest = require 'digest'
           
 http = {}
 http.detectives = []
@@ -18,41 +19,43 @@ http.punish = (args...) -> http.payloads.merge args
   
 http.createServer = (port, username, password) ->
   log.info ('Creating HTTP server on port ' + port).green
-  if username? and password?
-    log.info 'Login Credentials: ' + (username + ':' + password).red
   log.info 'Detectives: ' + http.detectives
   log.info 'Payloads: ' + http.payloads
-
-  serv = https.createServer (req, res) ->
-    unless req
-      return
-        
-    http.processRequest req, res
-      
-    uri = url.parse(req.url).pathname
-    filename = path.join(config.dir, uri)   
-             
-    path.exists filename, (exists) -> 
-      unless exists
-        res.writeHead 404, 'Content-Type': 'text/plain'
-        res.end()
-        return    
-      if fs.statSync(filename).isDirectory()    
-        filename += '/index.html'
-         
-      fs.readFile filename, 'binary', (err, file) ->
-        if err
-          res.writeHead 500, 'Content-Type': 'text/plain'
-          res.write err + '\n'
-          res.end()
-          return
-            
-        res.writeHead 200, 'Content-Type': mime.lookup(filename)
-        res.write file, 'binary'
-        res.end()
-
+  if username? and password?
+    log.info 'Login Credentials: ' + (username + ':' + password).red
+    serv = digest.createServer username, password, http.serveRequest
+  else
+    serv = https.createServer http.serveRequest
   serv.listen port
   return serv
+
+http.serveRequest = (req, res) ->
+  unless req
+    return
+      
+  http.processRequest req, res
+    
+  uri = url.parse(req.url).pathname
+  filename = path.join(config.dir, uri)   
+           
+  path.exists filename, (exists) -> 
+    unless exists
+      res.writeHead 404, 'Content-Type': 'text/plain'
+      res.end()
+      return    
+    if fs.statSync(filename).isDirectory()    
+      filename += '/index.html'
+       
+    fs.readFile filename, 'binary', (err, file) ->
+      if err
+        res.writeHead 500, 'Content-Type': 'text/plain'
+        res.write err + '\n'
+        res.end()
+        return
+          
+      res.writeHead 200, 'Content-Type': mime.lookup(filename)
+      res.write file, 'binary'
+      res.end()
           
 /* This is split out so it can be used in other places (such as the express middleware) */
 http.processRequest = (req, res) ->
