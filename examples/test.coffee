@@ -9,8 +9,11 @@ fusker.http.punish 'blacklist', 'bush'
 fusker.socket.detect 'xss', 'sqli', 'lfi'
 fusker.socket.punish 'blacklist'
 
-server = fusker.http.createServer 8080, 'admin', 'pass123'
+server = fusker.http.createServer 8080
 io = fusker.socket.listen server
+
+# This will run an http server on port 8081 identical to the one on 8080 but requiring a username and password to log in
+securedServer = fusker.http.createServer 8081, 'admin', 'pass123'
 
 io.sockets.on 'connection', (socket) ->
 
