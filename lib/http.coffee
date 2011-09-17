@@ -44,8 +44,18 @@ http.serveRequest = (req, res) ->
       res.end()
       return    
     if fs.statSync(filename).isDirectory()    
-      filename += '/index.html'
-       
+      ext = ".html"
+      path.exists (filename+'/index'+ext), (exists) ->
+        unless exists
+          path.exists (filename+'/index.htm'), (exists) ->
+            unless exists
+              res.writeHead 404, 'Content-Type': 'text/plain'
+              res.end "your client '"+filename+"/index"+ext+"' was not found"
+              return    
+            ext = ".htm"  
+      
+      filename += '/index'+ext
+
     fs.readFile filename, 'binary', (err, file) ->
       if err
         res.writeHead 500, 'Content-Type': 'text/plain'
