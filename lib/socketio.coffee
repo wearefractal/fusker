@@ -4,7 +4,7 @@ fs = require 'fs'
 path = require 'path'
 util = require './util'
 config = require './config'
-log = require './logger'
+log = require 'node-log'
 
 socketio = {}
 socketio.detectives = []

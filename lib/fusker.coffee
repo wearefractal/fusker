@@ -1,5 +1,6 @@
 require 'protege'
-
+require('node-log').setName 'fusker'
+  
 /* Create global var */
 fusker = {}
 

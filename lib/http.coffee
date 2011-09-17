@@ -5,7 +5,7 @@ fs = require 'fs'
 path = require 'path'
 util = require './util'
 config = require './config'
-log = require './logger'
+log = require 'node-log'
 mime = require 'mime'
 digest = require 'digest'
           
@@ -41,27 +41,20 @@ http.serveRequest = (req, res) ->
   path.exists filename, (exists) -> 
     unless exists
       res.writeHead 404, 'Content-Type': 'text/plain'
-      res.end()
-      return    
-    if fs.statSync(filename).isDirectory()    
-      ext = ".html"
-      path.exists (filename+'/index'+ext), (exists) ->
+      return res.end()
+        
+    if fs.statSync(filename).isDirectory()  
+      filename += '/' + config.index
+      path.exists filename, (exists) -> 
         unless exists
-          path.exists (filename+'/index.htm'), (exists) ->
-            unless exists
-              res.writeHead 404, 'Content-Type': 'text/plain'
-              res.end "your client '"+filename+"/index"+ext+"' was not found"
-              return    
-            ext = ".htm"  
-      
-      filename += '/index'+ext
-
-    fs.readFile filename, 'binary', (err, file) ->
+          res.writeHead 404, 'Content-Type': 'text/plain'
+          return res.end()
+        
+    fs.readFile path.normalize(filename), 'binary', (err, file) ->
       if err
         res.writeHead 500, 'Content-Type': 'text/plain'
         res.write err + '\n'
-        res.end()
-        return
+        return res.end()
           
       res.writeHead 200, 'Content-Type': mime.lookup(filename)
       res.write file, 'binary'
