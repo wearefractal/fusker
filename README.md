@@ -1,5 +1,9 @@
 **Fusker is a library to prevent and manage a multitude of attacks in nodejs**
 
+![How it works](http://i.imgur.com/wkJdu.png)
+
+## Installation
+
 To install fusker, use [npm](http://github.com/isaacs/npm):
 
     $ npm install fusker
@@ -38,14 +42,6 @@ raggedyann - Redirects attacker to extreme speaker rape. (WARNING: Harmful to sp
 crews - Displays Terry Crews nipple dance rainbow b& page
 ```
 
-### Adding HTTP detectives
-
-Add a .js or .coffee file to the 'http-detectives' directory of the module.
-	
-### Adding HTTP payloads
-
-Add a .js or .coffee file to the 'http-payloads' directory of the module.
-
 ## Socket.io Configuration
 ### List of included SocketIO detection modules (detectives)
 ```
@@ -59,27 +55,15 @@ lfi - Detects common LFI attacks in incoming socket messages
 blacklist - Blacklists IP from SocketIO server for specified amount of time (banLength in config)
 ```
 
-### Adding SocketIO detectives
-
-Add a .js or .coffee file to the 'socket-detectives' directory of the module.
-	
-### Adding SocketIO payloads
-
-Add a .js or .coffee file to the 'socket-payloads' directory of the module.
-
 ## Other Configuration
 ### Express Middleware
 Please see [this](http://github.com/wearefractal/fusker/blob/master/examples/express-test.coffee) for a working express example.
 It's as easy as ```app.use(fusker.express.check);```
 Detectives/payloads are the same as they would be for the fusker HTTP server. Make sure fusker is the first piece of middleware added.
 
-### PROTIPS
+### PROTIP BRO
 Setting config.silent to true will turn off all logging
 Setting config.verbose to true will turn on a ton of logging
-	
-## Contributors
-
-- [Contra](https://github.com/Contra)
 
 ## LICENSE
 
