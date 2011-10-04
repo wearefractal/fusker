@@ -1,4 +1,4 @@
-**Fusker is a library to prevent and manage a multitude of attacks in nodejs**
+**Fusker is an application firewall that prevents and manages a multitude of attacks in nodejs**
 
 ![How it works](http://i.imgur.com/wkJdu.png)
 
@@ -25,7 +25,7 @@ sqli - Detects SQLi attempts in incoming http requests
 lfi - Detects common LFI attacks in incoming http requests
 404 - Punishes people who like to snoop around. Only use with single page applications
 ```
-	
+
 ### List of included HTTP payload modules
 ```
 blacklist - Blacklists IP from HTTP server for specified amount of time (banLength in config)
@@ -49,7 +49,7 @@ xss - Detects common XSS attacks in incoming socket messages
 sqli - Detects SQLi attempts in incoming socket messages
 lfi - Detects common LFI attacks in incoming socket messages
 ```
-	
+
 ### List of included SocketIO payload modules
 ```
 blacklist - Blacklists IP from SocketIO server for specified amount of time (banLength in config)
@@ -89,3 +89,4 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
