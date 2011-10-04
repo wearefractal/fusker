@@ -3,22 +3,25 @@
 <title>Fusker - Test Page</title>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script>
-      var socket = io.connect();
+  var socket = io.connect();
 
-      socket.on('connect', function () {
-      	console.log('Socket.IO connected!');
-      });
+  socket.on('connect', function () {
+    console.log('Socket.IO connected!');
+  });
 
-      socket.on('HelloClient', function (msg) {
-        console.log('Server: ' + msg);
-        socket.emit('TestObject', {username: 'ez-money', message: 'waz gud diz ya boi e-z e'});
+  socket.on('HelloClient', function (msg) {
+    console.log('Server: ' + msg);
+    socket.emit('TestObject', {
+      username: 'ez-money',
+      message: 'waz gud diz ya boi e-z e'
+    });
 
-	//Uncomment this block to send attacks to the server on page load
-	/*
-        socket.emit('TestXSS', '"><img src=x onerror=alert("XSS")><noscript>');
-        socket.emit('TestLFI', '../../etc/passwd/');
-        socket.emit('TestSQL', '\' OR \'1\'=\'1');*/
-      });
+    //Uncomment this block to send attacks to the server on page load
+    /*
+    socket.emit('TestXSS', '"><img src=x onerror=alert("XSS")><noscript>');
+    socket.emit('TestLFI', '../../etc/passwd/');
+    socket.emit('TestSQL', '\' OR \'1\'=\'1');*/
+  });
 </script>
 </head>
 <body bgcolor="black" background="http://content.ytmnd.com/content/1/d/b/1db6ede2772ba8f5428dbff9f1f2e3be.gif">
@@ -30,3 +33,4 @@
 </center>
 </body>
 </html>
+

@@ -5,11 +5,12 @@ path = require 'path'
 util = require './util'
 config = require './config'
 log = require 'node-log'
+async = require 'async'
+blacklist = require './blacklist'
 
 socketio = {}
 socketio.detectives = []
 socketio.payloads = []
-socketio.blacklist = []
 
 socketio.detect = (args...) -> socketio.detectives.merge args
 socketio.punish = (args...) -> socketio.payloads.merge args
@@ -23,47 +24,34 @@ socketio.listen = (server) ->
 
   io.sockets.on 'connection', (socket) ->
     socket.remoteAddress ?= socket.handshake.address.address
-
-    for entry in socketio.blacklist
-      if entry.ip is socket.remoteAddress
-        served = util.getSince entry.date
-        if served >= config.banLength
-          log.debug 'Lifting SocketIO ban on ' + socket.remoteAddress
-          socketio.blacklist.remove entry
-          break
-        else
-          log.debug socket.remoteAddress + ' blocked via SocketIO. Remaining: ' + Math.round(config.banLength - served) + ' min'
-          socket.disconnect()
-          return
+    if blacklist.check socket.remoteAddress then return socket.disconnect()
 
     socket.on 'newListener', (evt, listener) ->
       socket.listeners(evt).push (msg) ->
-        log.debug 'SocketIO: ' + socket.remoteAddress + ' -> ' + evt
-        for detective in socketio.detectives
-          module = require './socket-detectives/' + detective
-          module.check socket, sys.inspect(msg)
-            
+        socketio.processRequest socket, msg, -> log.debug 'SocketIO: ' + socket.remoteAddress + ' -> ' + evt
+
   io.enable 'browser client minification'
   io.enable 'browser client etag'
   io.set 'log level', 1
-  io.set 'transports', [ 'websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling' ]
+  io.set 'transports', ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']
   return io
 
-socketio.logAttack = (file, module, socket, msg) ->
-  olog = fs.createWriteStream file, flags: 'a'
-  olog.write '[- ATTACK DETAILS FOR ' + new Date() + ' -]\r\n'
-  olog.write ' --> Detective: ' + module + '\r\n'
-  olog.write ' --> Socket Message: ' + msg + '\r\n'
-  olog.write ' --> IP: ' + socket.remoteAddress + '\r\n'
-  olog.write '[- END ATTACK DETAILS -]\r\n\r\n'
-  olog.end()
+socketio.processRequest = (socket, message, cb) ->
+  check = (detective, call) ->
+    module = require './socket-detectives/' + detective
+    module.check socket, sys.inspect(message)
+    call()
+
+  async.forEach socketio.detectives, check, cb
 
 socketio.handleAttack = (module, socket, msg) ->
   log.warn 'Socket attack detected! Module: ' + module + ' IP: ' + socket.remoteAddress
-  socketio.logAttack config.socketlog, module, socket, msg
-
-  for payload in socketio.payloads
+  kill = (payload, call) ->
     module = require './socket-payloads/' + payload
     module.run socket, msg
+    call()
+
+  async.forEach socketio.payloads, kill, -> util.logSocket module, socket, msg
 
 module.exports = socketio
+

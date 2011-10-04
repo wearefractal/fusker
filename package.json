@@ -1,7 +1,7 @@
 {
 	"name": "fusker",
-	"description": "Detect, prevent, and fight back against hackers in the lulziest ways possible",
-	"version": "0.1.9",
+	"description": "Application firewall. Detect, prevent, and fight back against hackers in the lulziest ways possible",
+	"version": "0.2.0",
 	"homepage": "http://github.com/wearefractal/fusker",
 	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist", "express", "socket", "security", "firewall"],
 	"author": "Contra <contra@australia.edu> (http://wearefractal.com)",
@@ -24,7 +24,8 @@
 		"protege":"*",
 		"mime":"*",
 		"digest":"*",
-		"node-log":"*"
+		"node-log":"*",
+		"async":"*"
 	},
 	"contributors": [{
 		"name": "Contra",
@@ -38,3 +39,4 @@
 		"url": "http://github.com/wearefractal/fusker/raw/master/LICENSE"
 	}]
 }
+

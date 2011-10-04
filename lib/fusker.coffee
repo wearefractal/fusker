@@ -1,6 +1,7 @@
+require('coffee-script');
 require 'protege'
 require('node-log').setName 'fusker'
-  
+
 /* Create global var */
 fusker = {}
 
@@ -13,3 +14,4 @@ fusker.socket = require './socketio'
 fusker.patterns = require './patterns'
 
 module.exports = fusker
+

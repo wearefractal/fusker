@@ -8,15 +8,16 @@ config = require './config'
 log = require 'node-log'
 mime = require 'mime'
 digest = require 'digest'
-          
+async = require 'async'
+blacklist = require './blacklist'
+
 http = {}
 http.detectives = []
 http.payloads = []
-http.blacklist = []
 
 http.detect = (args...) -> http.detectives.merge args
 http.punish = (args...) -> http.payloads.merge args
-  
+
 http.createServer = (port, username, password) ->
   log.info ('Creating HTTP server on port ' + port).green
   log.info 'Detectives: ' + http.detectives
@@ -32,70 +33,55 @@ http.createServer = (port, username, password) ->
 http.serveRequest = (req, res) ->
   unless req
     return
-      
-  http.processRequest req, res
-    
-  uri = url.parse(req.url).pathname
-  filename = path.join(config.dir, uri)   
-           
-  path.exists filename, (exists) -> 
-    unless exists
-      res.writeHead 404, 'Content-Type': 'text/plain'
-      return res.end()
-        
-    if fs.statSync(filename).isDirectory()  
-      filename += '/' + config.index
-      path.exists filename, (exists) -> 
-        unless exists
-          res.writeHead 404, 'Content-Type': 'text/plain'
-          return res.end()
-        
-    fs.readFile path.normalize(filename), 'binary', (err, file) ->
-      if err
-        res.writeHead 500, 'Content-Type': 'text/plain'
-        res.write err + '\n'
+
+  http.processRequest req, res, ->
+    uri = url.parse(req.url).pathname
+    filename = path.join(config.dir, uri)
+
+    path.exists filename, (exists) ->
+      unless exists
+        res.writeHead 404
         return res.end()
-          
-      res.writeHead 200, 'Content-Type': mime.lookup(filename)
-      res.write file, 'binary'
-      res.end()
-          
-/* This is split out so it can be used in other places (such as the express middleware) */
-http.processRequest = (req, res) ->
+
+      if fs.statSync(filename).isDirectory()
+        filename += '/' + config.index
+        path.exists filename, (exists) ->
+          unless exists
+            res.writeHead 404
+            return res.end()
+
+      fs.readFile path.normalize(filename), 'binary', (err, file) ->
+        if err
+          res.writeHead 500
+          return res.end()
+
+        res.writeHead 200, 'Content-Type': mime.lookup(filename)
+        res.write file, 'binary'
+        res.end()
+
+http.processRequest = (req, res, cb) ->
   userIP = req.connection.remoteAddress
   log.debug 'HTTP: ' + userIP + ' -> ' + req.url
 
-  for entry in http.blacklist
-    if entry.ip is userIP
-      served = util.getSince entry.date
-      if served >= config.banLength
-        log.debug 'Lifting HTTP ban on ' + userIP
-        http.blacklist.remove entry
-        break
-      else
-        log.debug userIP + ' blocked via HTTP. Remaining: ' + Math.round(config.banLength - served) + ' min'
-        res.end()
-        return
+  if blacklist.check userIP
+    res.writeHead 403
+    return res.end()
 
-  for detective in http.detectives
+  check = (detective, call) ->
     module = require './http-detectives/' + detective
     module.check req, res
+    call()
 
-http.logAttack = (file, module, req) ->
-  olog = fs.createWriteStream file, flags: 'a'
-  olog.write '[- ATTACK DETAILS FOR ' + new Date() + ' -]\r\n'
-  olog.write ' --> Detective: ' + module + '\r\n'
-  olog.write ' --> Request: ' + req.method + ' ' + req.url + '\r\n'
-  olog.write ' --> IP: ' + req.connection.remoteAddress + '\r\n'
-  olog.write '[- END ATTACK DETAILS -]\r\n\r\n'
-  olog.end()
+  async.forEach http.detectives, check, cb
 
 http.handleAttack = (module, req, res) ->
   log.warn 'HTTP attack detected! Module: ' + module + ' IP: ' + req.connection.remoteAddress
-  http.logAttack config.httplog, module, req
-
-  for payload in http.payloads
+  kill = (payload, call) ->
     module = require './http-payloads/' + payload
     module.run req, res
-    
+    call()
+
+  async.forEach http.payloads, kill, -> util.logHTTP module, req
+
 module.exports = http
+
