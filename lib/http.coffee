@@ -20,8 +20,8 @@ http.punish = (args...) -> http.payloads.push arg for arg in args
 
 http.createServer = (port, username, password) ->
   log.info 'Creating HTTP server on port ' + port
-  log.info 'Detectives: ' + http.detectives
-  log.info 'Payloads: ' + http.payloads
+  log.info 'Detectives: ' + http.detectives if http.detectives?
+  log.info 'Payloads: ' + http.payloads if http.payloads?
   if username? and password?
     log.info 'Login Credentials: ' + (username + ':' + password).red
     serv = digest.createServer username, password, http.serveRequest

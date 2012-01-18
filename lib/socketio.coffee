@@ -17,8 +17,8 @@ socketio.punish = (args...) -> socketio.payloads.push arg for arg in args
 
 socketio.listen = (server) ->
   log.info 'Creating Socket.IO server!'.green
-  log.info 'Detectives: ' + socketio.detectives
-  log.info 'Payloads: ' + socketio.payloads
+  log.info 'Detectives: ' + socketio.detectives if socketio.detectives?
+  log.info 'Payloads: ' + socketio.payloads if socketio.payloads?
   sio = require 'socket.io'
   io = sio.listen server
 
