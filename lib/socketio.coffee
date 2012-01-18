@@ -16,7 +16,7 @@ socketio.detect = (args...) -> socketio.detectives.push arg for arg in args
 socketio.punish = (args...) -> socketio.payloads.push arg for arg in args
 
 socketio.listen = (server) ->
-  log.info 'Creating Socket.IO server!'.green
+  log.info 'Creating Socket.IO server!'
   log.info 'Detectives: ' + socketio.detectives if socketio.detectives?
   log.info 'Payloads: ' + socketio.payloads if socketio.payloads?
   sio = require 'socket.io'
