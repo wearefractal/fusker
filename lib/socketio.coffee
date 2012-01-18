@@ -12,8 +12,8 @@ socketio = {}
 socketio.detectives = []
 socketio.payloads = []
 
-socketio.detect = (args...) -> socketio.detectives.merge args
-socketio.punish = (args...) -> socketio.payloads.merge args
+socketio.detect = (args...) -> socketio.detectives.push arg for arg in args
+socketio.punish = (args...) -> socketio.payloads.push arg for arg in args
 
 socketio.listen = (server) ->
   log.info 'Creating Socket.IO server!'.green

@@ -15,11 +15,11 @@ http = {}
 http.detectives = []
 http.payloads = []
 
-http.detect = (args...) -> http.detectives.merge args
-http.punish = (args...) -> http.payloads.merge args
+http.detect = (args...) -> http.detectives.push arg for arg in args
+http.punish = (args...) -> http.payloads.push arg for arg in args
 
 http.createServer = (port, username, password) ->
-  log.info ('Creating HTTP server on port ' + port).green
+  log.info 'Creating HTTP server on port ' + port
   log.info 'Detectives: ' + http.detectives
   log.info 'Payloads: ' + http.payloads
   if username? and password?

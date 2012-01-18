@@ -1,4 +1,4 @@
-fusker = require '../lib/fusker'
+fusker = require '../lib/main'
 express = require 'express'
 
 fusker.config.dir = process.cwd()

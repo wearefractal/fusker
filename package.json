@@ -1,32 +1,22 @@
 {
 	"name": "fusker",
 	"description": "Application firewall. Detect, prevent, and fight back against hackers in the lulziest ways possible",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"homepage": "http://github.com/wearefractal/fusker",
+	"repository": "http://github.com/wearefractal/fusker.git",
 	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist", "express", "socket", "security", "firewall"],
-	"author": "Contra <contra@australia.edu> (http://wearefractal.com)",
-	"main": "./lib/fusker.coffee",
-	"directories": {
-		"lib": "./lib"
-	},
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/wearefractal/fusker.git"
-	},
+	"author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+	"main": "./lib/main.js",
+	
 	"dependencies": {
 		"socket.io": ">= 0.7.4",
 		"coffee-script": "*",
-		"colors":"*",
-		"protege":"*",
 		"mime":"*",
-		"digest":"*",
+		"digest":">= 0.0.5",
 		"node-log":"*",
-		"async":"*"
+		"async":"*",
+		"xemplar":"*"
 	},
-	"contributors": [{
-		"name": "Contra",
-		"github": "https://github.com/Contra"
-	}],
 	"engines": {
 		"node": "*"
 	},

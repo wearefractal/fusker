@@ -1,4 +1,4 @@
-fusker = require '../lib/fusker'
+fusker = require '../lib/main'
 
 fusker.config.dir = __dirname
 fusker.config.banLength = 1
@@ -27,7 +27,7 @@ io.sockets.on 'connection', (socket) ->
   socket.on 'TestObject', (msg) ->
     console.log 'HelloServer3! Contents: ' + msg
   
-  /* Uncomment the attack senders in index.html to test these */
+  # Uncomment the attack senders in index.html to test these
   socket.on 'TestSQL', (msg) ->
     console.log 'SQL Handled! Contents: ' + msg
   
