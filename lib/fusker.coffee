@@ -2,10 +2,7 @@ require('coffee-script');
 require 'protege'
 require('node-log').setName 'fusker'
 
-/* Create global var */
 fusker = {}
-
-/* Merge all of the libraries */
 fusker.util = require './util'
 fusker.config = require './config'
 fusker.http = require './http'
