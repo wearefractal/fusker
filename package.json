@@ -9,10 +9,6 @@
 	"directories": {
 		"lib": "./lib"
 	},
-	"bugs": {
-		"mail": "contra@australia.edu",
-		"web": "http://github.com/wearefractal/fusker/issues"
-	},
 	"repository": {
 		"type": "git",
 		"url": "http://github.com/wearefractal/fusker.git"
