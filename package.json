@@ -7,7 +7,7 @@
 	"keywords": ["fusker", "hack", "protect", "csrf", "lfi", "xss", "sqli", "injection", "attack", "blacklist", "express", "socket", "security", "firewall"],
 	"author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
 	"main": "./lib/main.js",
-	
+
 	"dependencies": {
 		"socket.io": ">= 0.7.4",
 		"coffee-script": "*",
@@ -18,11 +18,10 @@
 		"xemplar":"*"
 	},
 	"engines": {
-		"node": "*"
+		"node": ">= 0.4.0"
 	},
 	"licenses": [{
 		"type": "MIT",
 		"url": "http://github.com/wearefractal/fusker/raw/master/LICENSE"
 	}]
 }
-

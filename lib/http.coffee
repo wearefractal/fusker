@@ -1,14 +1,18 @@
-https = require 'http'
+# Node Internal Libs
+nodeHttp = require 'http'
 url = require 'url'
-sys = require 'sys'
 fs = require 'fs'
 path = require 'path'
-util = require './util'
-config = require './config'
+
+# NPM Libs (Dependencies)
 log = require 'node-log'
 mime = require 'mime'
 digest = require 'digest'
 async = require 'async'
+
+# Custom Files
+attackLogger = require './attackLogger'
+config = require './config'
 blacklist = require './blacklist'
 
 http = {}
@@ -26,7 +30,7 @@ http.createServer = (port, username, password) ->
     log.info 'Login Credentials: ' + (username + ':' + password).red
     serv = digest.createServer username, password, http.serveRequest
   else
-    serv = https.createServer http.serveRequest
+    serv = nodeHttp.createServer http.serveRequest
   serv.listen port
   return serv
 
@@ -81,7 +85,6 @@ http.handleAttack = (module, req, res) ->
     module.run req, res
     call()
 
-  async.forEach http.payloads, kill, -> util.logHTTP module, req
+  async.forEach http.payloads, kill, -> attackLogger.logHTTP module, req
 
 module.exports = http
-
