@@ -11,7 +11,7 @@ digest = require 'digest'
 async = require 'async'
 
 # Custom Files
-util = require './util'
+attackLogger = require './attackLogger'
 config = require './config'
 blacklist = require './blacklist'
 
@@ -85,6 +85,6 @@ http.handleAttack = (module, req, res) ->
     module.run req, res
     call()
 
-  async.forEach http.payloads, kill, -> util.logHTTP module, req
+  async.forEach http.payloads, kill, -> attackLogger.logHTTP module, req
 
 module.exports = http
