@@ -1,11 +1,16 @@
+# Node Internal Libs
 url = require 'url'
-sys = require 'sys'
 fs = require 'fs'
 path = require 'path'
-util = require './util'
-config = require './config'
+util = require 'util'
+
+# NPM Libs (Dependencies)
 log = require 'node-log'
 async = require 'async'
+
+# Custom Files
+attackLogger = require './attackLogger'
+config = require './config'
 blacklist = require './blacklist'
 
 socketio = {}
@@ -39,7 +44,7 @@ socketio.listen = (server) ->
 socketio.processRequest = (socket, message, cb) ->
   check = (detective, call) ->
     module = require './socket-detectives/' + detective
-    module.check socket, sys.inspect(message)
+    module.check socket, util.inspect(message)
     call()
 
   async.forEach socketio.detectives, check, cb
@@ -51,7 +56,6 @@ socketio.handleAttack = (module, socket, msg) ->
     module.run socket, msg
     call()
 
-  async.forEach socketio.payloads, kill, -> util.logSocket module, socket, msg
+  async.forEach socketio.payloads, kill, -> attackLogger.logSocket module, socket, msg
 
 module.exports = socketio
-
