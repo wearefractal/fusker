@@ -1,4 +1,4 @@
-https = require 'http'
+nodeHttp = require 'http'
 url = require 'url'
 sys = require 'sys'
 fs = require 'fs'
@@ -26,7 +26,7 @@ http.createServer = (port, username, password) ->
     log.info 'Login Credentials: ' + (username + ':' + password).red
     serv = digest.createServer username, password, http.serveRequest
   else
-    serv = https.createServer http.serveRequest
+    serv = nodeHttp.createServer http.serveRequest
   serv.listen port
   return serv
 
@@ -84,4 +84,3 @@ http.handleAttack = (module, req, res) ->
   async.forEach http.payloads, kill, -> util.logHTTP module, req
 
 module.exports = http
-
