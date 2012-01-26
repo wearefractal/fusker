@@ -47,21 +47,22 @@ http.serveRequest = (req, res) ->
         res.writeHead 404
         return res.end()
 
-      if fs.statSync(filename).isDirectory()
-        filename += '/' + config.index
-        path.exists filename, (exists) ->
-          unless exists
-            res.writeHead 404
+      fs.stat filename, (err, stat) ->
+        if stat.isDirectory()
+          filename += '/' + config.index
+          path.exists filename, (exists) ->
+            unless exists
+              res.writeHead 404
+              return res.end()
+
+        fs.readFile path.normalize(filename), 'binary', (err, file) ->
+          if err
+            res.writeHead 500
             return res.end()
 
-      fs.readFile path.normalize(filename), 'binary', (err, file) ->
-        if err
-          res.writeHead 500
-          return res.end()
-
-        res.writeHead 200, 'Content-Type': mime.lookup(filename)
-        res.write file, 'binary'
-        res.end()
+          res.writeHead 200, 'Content-Type': mime.lookup(filename)
+          res.write file, 'binary'
+          res.end()
 
 http.processRequest = (req, res, cb) ->
   userIP = req.connection.remoteAddress
