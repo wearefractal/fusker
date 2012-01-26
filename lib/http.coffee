@@ -1,14 +1,18 @@
+# Node Internal Libs
 nodeHttp = require 'http'
 url = require 'url'
-sys = require 'sys'
 fs = require 'fs'
 path = require 'path'
-util = require './util'
-config = require './config'
+
+# NPM Libs (Dependencies)
 log = require 'node-log'
 mime = require 'mime'
 digest = require 'digest'
 async = require 'async'
+
+# Custom Files
+util = require './util'
+config = require './config'
 blacklist = require './blacklist'
 
 http = {}
