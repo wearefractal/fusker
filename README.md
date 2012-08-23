@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/wearefractal/fusker.png)](http://travis-ci.org/wearefractal/fusker)
 **Fusker is an application firewall that prevents and manages a multitude of attacks in nodejs**
 
 ![How it works](http://i.imgur.com/wkJdu.png)
